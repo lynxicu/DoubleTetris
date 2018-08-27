@@ -12,19 +12,21 @@ public class Main extends Application{
     }
 
     public void start(Stage mainStage) {
+        Renderer re = new Renderer();
+        GameController gc = new GameController(re);
+        KeyResponder kr = new KeyResponder(gc);
+
         mainStage.setTitle("Double Tetris");
         mainStage.initStyle(StageStyle.TRANSPARENT);
 
-        EventHandler event = new EventHandler();
-
         Group rootGroup = new Group();
-        rootGroup.getChildren().add(event.renderer());
+        rootGroup.getChildren().add(re);
 
         Scene mainScene = new Scene(rootGroup);
         mainStage.setScene(mainScene);
         mainStage.show();
 
         rootGroup.requestFocus();
-        rootGroup.setOnKeyReleased(event.responder());
+        rootGroup.setOnKeyReleased(kr);
     }
 }

@@ -5,29 +5,42 @@ import java.util.TimerTask;
 import javafx.scene.paint.Color;
 
 public class LogicController implements ControlInterface {
-    private static int step = 1000;
     private GameBox box;
-    private Block[] block = new Block[2];
+    private Block[] block;
+    private ScoreCounter sc;
+    private int step;
+    private Timer t;
 
     @Override
     public void start() {
         box = new GameBox();
+        block = new Block[2];
         block[0] = new Block(0);
         block[1] = new Block(1);
         block[0].setBlockXY(1, 0);
         block[1].setBlockXY(6, 0);
-        setTimer();
+        sc = new ScoreCounter();
+        step = sc.getStep();
+        t = new Timer();
+        startTimer(t, step);
     }
 
     @Override
     public void pause() {
-        if(GameController.getIsPause())
-            setTimer();
+        if (!GameController.getIsPause()) {
+            stopTimer(t);
+            pauseRender();
+        } else {
+            t = new Timer();
+            startTimer(t, step);
+        }
     }
 
     @Override
     public void exit() {
-
+        stopTimer(t);
+        gameOverRender();
+        GameController.setGameOver();
     }
 
     @Override
@@ -44,7 +57,7 @@ public class LogicController implements ControlInterface {
     @Override
     public void blockMoveLeft(int player_m) {
         if (isLeftMovable(player_m)) {
-            block[player_m].moveLeft(1);
+            block[player_m].moveLeft();
             reRender();
         }
     }
@@ -52,7 +65,7 @@ public class LogicController implements ControlInterface {
     @Override
     public void blockMoveRight(int player_m) {
         if (isRightMovable(player_m)) {
-            block[player_m].moveRight(1);
+            block[player_m].moveRight();
             reRender();
         }
     }
@@ -60,7 +73,7 @@ public class LogicController implements ControlInterface {
     @Override
     public void blockMoveDown(int player_m) {
         if (isDownMovable(player_m)) {
-            block[player_m].moveDown(1);
+            block[player_m].moveDown();
             reRender();
         }
     }
@@ -273,43 +286,75 @@ public class LogicController implements ControlInterface {
         return x;
     }
 
-    private void setTimer() {
-        Timer t = new Timer();
-
-        t.schedule(new TimerTask() {
+    private void startTimer(Timer t_m, int step_m) {
+        t_m.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (!GameController.getIsPause()) {
-                    int[] player = {0, 1};
+                int[] player = {0, 1};
 
-                    for (int i : player) {
-                        if (isSettable(i)) {
-                            if (block[i].getY() >= Block._blockRow) {
-                                box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
-                                block[i].newBlock(i);
-                                block[i].setBlockXY(randomX(i), 0);
-                            } else {
-                                cancel();
-                                GameController.setGameOver();
-                            }
-                        }
-
-                        if (isDownMovable(i)) {
-                            block[i].moveDown(1);
+                for (int i : player) {
+                    if (isSettable(i)) {
+                        if (block[i].getY() >= Block._blockRow) {
+                            box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
+                            block[i].newBlock(i);
+                            GameController.blockPreviewRerender(block[i].getBlocks(), block[i].getColors(), i);
+                            block[i].setBlockXY(randomX(i), 0);
+                        } else {
+                            exit();
+                            break;
                         }
                     }
 
-                    box.clear();
+                    if (isDownMovable(i)) {
+                        block[i].moveDown();
+                    }
+
                     reRender();
                 }
-                else
-                    cancel();
+
+                int line = box.clear();
+                System.out.println(line);
+                if (0 != line) {
+                    reRender();
+                    GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GRAY);
+                    sc.count(line);
+                    int stepTmp = sc.getStep();
+
+                    if (stepTmp != step_m) {
+                        t = new Timer();
+                        startTimer(t_m, stepTmp);
+                        this.cancel();
+                    }
+                }
             }
-        }, 0, step);
+        }, 0, step_m);
+    }
+
+    private void stopTimer(Timer t_m) {
+        t_m.cancel();
     }
 
     private void reRender() {
         GameController.reRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[0].getColor(), block[1].getBlock(), block[1].getX(), block[1].getY(), block[1].getColor());
+        GameController.blockPreviewRerender(block[0].getBlocks(), block[0].getColors(), 0);
+        GameController.blockPreviewRerender(block[1].getBlocks(), block[1].getColors(), 1);
+        GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GRAY);
+    }
+
+    private void pauseRender() {
+        GameController.pauseRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[1].getBlock(), block[1].getX(), block[1].getY());
+        Color[] colors = {Color.GRAY, Color.GRAY, Color.GRAY};
+        GameController.blockPreviewRerender(block[0].getBlocks(), colors, 0);
+        GameController.blockPreviewRerender(block[1].getBlocks(), colors, 1);
+        GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GREEN);
+    }
+
+    private void gameOverRender() {
+        GameController.gameOverRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[1].getBlock(), block[1].getX(), block[1].getY());
+        Color[] colors = {Color.RED, Color.RED, Color.RED};
+        GameController.blockPreviewRerender(block[0].getBlocks(), colors, 0);
+        GameController.blockPreviewRerender(block[1].getBlocks(), colors, 1);
+        GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.RED);
     }
 }
 
@@ -347,7 +392,9 @@ class GameBox {
                     box_m[y_m + row][x_m + col] += 1;
     }
 
-    void clear() {
+    int clear() {
+        int clearRow = 0;
+
         for (int row = _boxRow - 1; row >= 0; --row) {
             boolean isFull = true;
 
@@ -359,11 +406,15 @@ class GameBox {
             }
 
             if (isFull) {
+                ++clearRow;
+
                 for (int moveRow = row; moveRow > 0; --moveRow) {
                     System.arraycopy(box[moveRow - 1], 0, box[moveRow], 0, _boxCol);
                 }
             }
         }
+
+        return clearRow;
     }
 }
 
@@ -371,16 +422,19 @@ class Block {
     final static int _blockRow = 4;
     final static int _blockCol = 4;
 
-    private BlockSet blockSet = new BlockSet();
-    private int[][][] block = new int[3][_blockRow][_blockCol];
-    private Color[] color = new Color[3];
+    private BlockSet blockSet;
+    private int[][][] block;
+    private Color[] color;
     private int x;
     private int y;
 
     Block(int player_m) {
+        blockSet = new BlockSet();
+        block = new int[3][_blockRow][_blockCol];
         block[0] = blockSet.getBlock((int)(Math.random() * BlockSet._blockAmount));
         block[1] = blockSet.getBlock((int)(Math.random() * BlockSet._blockAmount));
         block[2] = blockSet.getBlock((int)(Math.random() * BlockSet._blockAmount));
+        color = new Color[3];
         color[0] = blockSet.getBlockColor((int)(Math.random() * BlockSet._blockColorAmount[player_m]), player_m);
         color[1] = blockSet.getBlockColor((int)(Math.random() * BlockSet._blockColorAmount[player_m]), player_m);
         color[2] = blockSet.getBlockColor((int)(Math.random() * BlockSet._blockColorAmount[player_m]), player_m);
@@ -518,15 +572,51 @@ class Block {
         }   // 在方块旋转后进行左对齐
     }
 
-    void moveLeft(int x_m) {
-        x -= x_m;
+    void moveLeft() {
+        x -= 1;
     }
 
-    void moveRight(int x_m) {
-        x += x_m;
+    void moveRight() {
+        x += 1;
     }
 
-    void moveDown(int y_m) {
-        y += y_m;
+    void moveDown() {
+        y += 1;
+    }
+}
+
+class ScoreCounter {
+    private int score;
+    private int line;
+    private int level;
+    private int step;
+
+    ScoreCounter() {
+        level = 0;
+        step = 1000;
+    }
+
+    int getScore() {
+        return score;
+    }
+
+    int getLine() {
+        return line;
+    }
+
+    int getLevel() {
+        return level;
+    }
+
+    int getStep() {
+        return step;
+    }
+
+    void count(int line_m) {
+        line += line_m;
+        score += 5 * (line_m * line_m + line_m);   // 分数计算公式：5 * (n * n + n)
+        if (level < 10) level += line_m;
+        if (level > 10) level = 10;
+        step = 1100 - level * 100;
     }
 }
