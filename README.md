@@ -21,14 +21,16 @@
     * ###### 游戏操作基本实现
     
     * ###### 已知 bugs 列表：
+    
+        1. 计分存在异常
         
         1. 方块下落次序不同的碰撞检测导致方块延时下落
         
-        2. 方块旋转的碰撞检测部分存在异常
+        1. 方块旋转的碰撞检测部分存在异常
         
-        3. 未知情况导致游戏无法暂停
+        1. 未知情况导致游戏无法暂停
         
-        4. 未知情况导致的类型转换异常：
+        1. 未知情况导致的类型转换异常：
         
         `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to com.sun.javafx.font.PGFont`
         
