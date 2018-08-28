@@ -195,8 +195,8 @@ class Renderer extends Canvas {
     }
 
     void blockPreviewRender(int[][][] blocks_m, Color[] colors_m, int player_m) {
-        final int[] _previewX = {45, 45 + _boxX + _boxWidth + _border};
-        final int _previewY = 45;
+        final int[] _previewX = {30, 30 + _boxX + _boxWidth + _border};
+        final int _previewY = 30;
 
         gc.clearRect(_previewX[player_m], _previewY, 4 * (2 * _border + _blockWidth + _blockBorder) + _blockBorder, 12 * (2 * _border + _blockHeight + _blockBorder) + _blockBorder);
         gc.setLineWidth(_blockBorder);
@@ -215,8 +215,8 @@ class Renderer extends Canvas {
     }
 
     void scoreBoardRender(int score_m, int line_m, int level_m, Color color_m) {
-        final int _scoreX1 = 45;
-        final int _scoreX2 = 45 + _boxX + _boxWidth + _border;
+        final int _scoreX1 = 30;
+        final int _scoreX2 = 30 + _boxX + _boxWidth + _border;
         final int _scoreY = 660;
         final int _scoreWidth = 120;
         final int _scoreHeight = 30;

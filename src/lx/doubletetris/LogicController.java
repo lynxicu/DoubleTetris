@@ -178,6 +178,24 @@ public class LogicController implements ControlInterface {
         return isDownMovable;
     }
 
+    private boolean isDoubleDownMovable() {
+        boolean isDoubleDownMovable = true;
+
+        if(isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1))
+            isDoubleDownMovable = false;
+
+        if(isDoubleDownMovable) {
+            int[][] boxTmp = box.getBoxClone();
+            GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY() + 1);
+            GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY() + 1);
+
+            if (isCollision(boxTmp))
+                isDoubleDownMovable = false;
+        }
+
+        return isDoubleDownMovable;
+    }
+
     private boolean isSettable(int player_m) {
         boolean isSettable = false;
 
@@ -290,14 +308,26 @@ public class LogicController implements ControlInterface {
         t_m.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (isDoubleDownMovable()) {
+                    block[0].moveDown();
+                    block[1].moveDown();
+                }
+                else if (isDownMovable(0) && !isDownMovable(1)) {
+                    block[0].moveDown();
+                }
+                else if (!isDownMovable(0) && isDownMovable(1)) {
+                    block[1].moveDown();
+                }
+
+                reRender();
                 int[] player = {0, 1};
 
                 for (int i : player) {
                     if (isSettable(i)) {
+                        box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
+
                         if (block[i].getY() >= Block._blockRow) {
-                            box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
                             block[i].newBlock(i);
-                            GameController.blockPreviewRerender(block[i].getBlocks(), block[i].getColors(), i);
                             block[i].setBlockXY(randomX(i), 0);
                         } else {
                             exit();
@@ -305,18 +335,13 @@ public class LogicController implements ControlInterface {
                         }
                     }
 
-                    if (isDownMovable(i)) {
-                        block[i].moveDown();
-                    }
-
                     reRender();
                 }
 
                 int line = box.clear();
-                System.out.println(line);
+
                 if (0 != line) {
                     reRender();
-                    GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GRAY);
                     sc.count(line);
                     int stepTmp = sc.getStep();
 
@@ -406,11 +431,12 @@ class GameBox {
             }
 
             if (isFull) {
-                ++clearRow;
-
                 for (int moveRow = row; moveRow > 0; --moveRow) {
                     System.arraycopy(box[moveRow - 1], 0, box[moveRow], 0, _boxCol);
                 }
+
+                ++row;
+                ++clearRow;
             }
         }
 
@@ -592,7 +618,9 @@ class ScoreCounter {
     private int step;
 
     ScoreCounter() {
-        level = 0;
+        score = 0;
+        line = 0;
+        level = 1;
         step = 1000;
     }
 
