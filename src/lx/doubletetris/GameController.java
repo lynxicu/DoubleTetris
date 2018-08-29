@@ -68,6 +68,14 @@ class GameController implements ControlInterface {
             re.scoreBoardRender(0, 0, 1, Color.GRAY);
             lc.start();
         }
+        else{
+            lc.exit();
+            isStart = true;
+            lc = new LogicController();
+            re.startRender(Color.GRAY);
+            re.scoreBoardRender(0, 0, 1, Color.GRAY);
+            lc.start();
+        }
     }
 
     @Override
@@ -76,7 +84,8 @@ class GameController implements ControlInterface {
             if (!isPause) {
                 lc.pause();
                 isPause = true;
-            } else {
+            }
+            else {
                 lc.pause();
                 isPause = false;
             }

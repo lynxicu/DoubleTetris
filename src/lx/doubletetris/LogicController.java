@@ -124,10 +124,10 @@ public class LogicController implements ControlInterface {
     private  boolean isLeftMovable(int player_m) {
         boolean isLeftMovable = true;
 
-        if(isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() - 1))
+        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() - 1))
             isLeftMovable = false;
 
-        if(isLeftMovable) {
+        if (isLeftMovable) {
             int playerCheck = Math.abs(player_m - 1);
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX() - 1, block[player_m].getY());
@@ -143,10 +143,10 @@ public class LogicController implements ControlInterface {
     private boolean isRightMovable(int player_m) {
         boolean isRightMovable = true;
 
-        if(isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() + 1))
+        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() + 1))
             isRightMovable = false;
 
-        if(isRightMovable) {
+        if (isRightMovable) {
             int playerCheck = Math.abs(player_m - 1);
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX() + 1, block[player_m].getY());
@@ -162,10 +162,10 @@ public class LogicController implements ControlInterface {
     private boolean isDownMovable(int player_m) {
         boolean isDownMovable = true;
 
-        if(isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
+        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
             isDownMovable = false;
 
-        if(isDownMovable) {
+        if (isDownMovable) {
             int playerCheck = Math.abs(player_m - 1);
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
@@ -181,10 +181,10 @@ public class LogicController implements ControlInterface {
     private boolean isDownMovable() {
         boolean isDownMovable = true;
 
-        if(isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1))
+        if (isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1))
             isDownMovable = false;
 
-        if(isDownMovable) {
+        if (isDownMovable) {
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY() + 1);
             GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY() + 1);
@@ -199,10 +199,10 @@ public class LogicController implements ControlInterface {
     private boolean isSettable(int player_m) {
         boolean isSettable = false;
 
-        if(isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
+        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
             isSettable = true;
 
-        if(!isSettable) {
+        if (!isSettable) {
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
 
@@ -213,30 +213,44 @@ public class LogicController implements ControlInterface {
         return isSettable;
     }
 
-    /*private boolean isSettable() {
+    private boolean isSettable() {
         boolean isSettable = false;
 
-        if(isOutBottom(block[0].getBlock(), block[0].getY() + 1) && isOutBottom(block[1].getBlock(), block[1].getY() + 1))
+        if (isSettable(0) && isSettable(1)) {
             isSettable = true;
+        }
 
-        if(!isSettable) {
-            int[][] boxTmp = box.getBoxClone();
-            GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
+        if (!isSettable) {
+            if (isSettable(0)) {
+                int[][] boxTmp = box.getBoxClone();
+                GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY());
+                GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY() + 1);
 
-            if (isCollision(boxTmp))
-                isSettable = true;
+                if (isCollision(boxTmp)) {
+                    isSettable = true;
+                }
+            }
+            if (isSettable(1)) {
+                int[][] boxTmp = box.getBoxClone();
+                GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY() + 1);
+                GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY());
+
+                if (isCollision(boxTmp)) {
+                    isSettable = true;
+                }
+            }
         }
 
         return isSettable;
-    }*/
+    }
 
     private boolean isPathImpact(int x_m, int player_m) {
         boolean isPathImpact = false;
 
-        if(isOutLeftRight(block[player_m].getBlock(), x_m))
+        if (isOutLeftRight(block[player_m].getBlock(), x_m))
             isPathImpact = true;
 
-        if(!isPathImpact) {
+        if (!isPathImpact) {
             int playerCheck = Math.abs(player_m - 1);
 
             if (block[playerCheck].getY() < Block._blockRow) {
@@ -337,22 +351,30 @@ public class LogicController implements ControlInterface {
                 }
 
                 reRender();
-                int[] player = {0, 1};
+                int[] player = null;
 
-                for (int i : player) {
-                    if (isSettable(i)) {
+                if (isSettable()) {
+                    player = new int[]{0, 1};
+                }
+                else if (isSettable(0)) {
+                    player = new int[]{0};
+                }
+                else if (isSettable(1)) {
+                    player = new int[]{1};
+                }
+
+                if (null != player) {
+                    for (int i : player) {
                         box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
 
                         if (block[i].getY() >= Block._blockRow) {
                             block[i].newBlock(i);
                             block[i].setBlockXY(randomX(i), 0);
+                            reRender();
                         } else {
                             exit();
-                            break;
                         }
                     }
-
-                    reRender();
                 }
 
                 int line = box.clear();
