@@ -178,22 +178,22 @@ public class LogicController implements ControlInterface {
         return isDownMovable;
     }
 
-    private boolean isDoubleDownMovable() {
-        boolean isDoubleDownMovable = true;
+    private boolean isDownMovable() {
+        boolean isDownMovable = true;
 
         if(isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1))
-            isDoubleDownMovable = false;
+            isDownMovable = false;
 
-        if(isDoubleDownMovable) {
+        if(isDownMovable) {
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY() + 1);
             GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY() + 1);
 
             if (isCollision(boxTmp))
-                isDoubleDownMovable = false;
+                isDownMovable = false;
         }
 
-        return isDoubleDownMovable;
+        return isDownMovable;
     }
 
     private boolean isSettable(int player_m) {
@@ -212,6 +212,23 @@ public class LogicController implements ControlInterface {
 
         return isSettable;
     }
+
+    /*private boolean isSettable() {
+        boolean isSettable = false;
+
+        if(isOutBottom(block[0].getBlock(), block[0].getY() + 1) && isOutBottom(block[1].getBlock(), block[1].getY() + 1))
+            isSettable = true;
+
+        if(!isSettable) {
+            int[][] boxTmp = box.getBoxClone();
+            GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
+
+            if (isCollision(boxTmp))
+                isSettable = true;
+        }
+
+        return isSettable;
+    }*/
 
     private boolean isPathImpact(int x_m, int player_m) {
         boolean isPathImpact = false;
@@ -308,7 +325,7 @@ public class LogicController implements ControlInterface {
         t_m.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (isDoubleDownMovable()) {
+                if (isDownMovable()) {
                     block[0].moveDown();
                     block[1].moveDown();
                 }

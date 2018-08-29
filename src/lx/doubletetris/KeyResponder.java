@@ -1,7 +1,6 @@
 package lx.doubletetris;
 
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class KeyResponder implements EventHandler<KeyEvent> {
@@ -51,8 +50,6 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 break;
             case DOWN:
                 gc.blockMoveDown(1);
-                break;
-            case C:
                 break;
         }
     }
