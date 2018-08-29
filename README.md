@@ -22,13 +22,29 @@ _算法无力，智商归零，不知猴年马月继续填坑。(:3」∠)_
     
     * ###### 已知 bugs 列表：
     
-        - [ ] 极端情况下 javafx 无法绘制，缓存溢出：
+        - [ ] 游戏暂停后再次恢复会立即对所有方块进行一次移动
+    
+        - [ ] 极端情况下反复重新开始游戏导致程序卡死或定时器无限循环
+    
+        - [ ] 极端情况下 javafx 无法绘制，缓冲区溢出：
         
         `java.nio.BufferOverFlowException`
         
+        - [ ] 由于反复暂停游戏或重新开始游戏后未知情况导致的类型转换异常：
+        
+        `java.lang.ClassCastException: com.sun.javafx.font.PrismFont cannot be cast to com.sun.prism.paint.Paint`
+        
+        `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to com.sun.javafx.font.PGFont`
+        
+        `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to java.lang.String`
+        
+        - [ ] 未知情况导致 javafx 异常：
+        
+        `java.lang.InternalError: Unrecognized PGCanvas token: 68`
+        
     * ###### 待实现功能列表: 
     
-        - [ ] 添加音效与背景音乐（8 Bit）（大坑待填）
+        - [ ] 添加音效与背景音乐（8 Bit）（_大坑待填_）
 
 * #### alpha 2 commit
 
@@ -40,15 +56,15 @@ _算法无力，智商归零，不知猴年马月继续填坑。(:3」∠)_
     
     * ###### 已知 bugs 列表：
     
-        - [x] （_alpha 3 commit 修复_）计分存在异常
+        - [x] （_已修复 / alpha 3 commit_）计分存在异常
         
-        - [x] （_alpha 3 commit 修复_）方块下落次序不同的碰撞检测导致方块延时下落
+        - [x] （_已修复 / alpha 3 commit_）方块下落次序不同的碰撞检测导致方块延时下落
         
         - [ ] 方块旋转的碰撞检测部分存在异常
         
-        - [ ] 未知情况导致游戏无法暂停
+        - [x] （_已修复 / alpha 3 commit_）未知情况导致游戏无法暂停
         
-        - [ ] 未知情况导致的类型转换异常：
+        - [x] （_重新提交 / alpha 3 commit_）未知情况导致的类型转换异常：
         
         `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to com.sun.javafx.font.PGFont`
         
