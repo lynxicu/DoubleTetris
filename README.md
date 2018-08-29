@@ -16,7 +16,7 @@ _算法无力，智商归零，不知猴年马月继续填坑。(:3」∠)_
 
 ## Changlogs
 
-* #### alpha 3 commit
+* #### alpha 3 commit -> alpha 3 release
 
     * ###### 修改定时器的方块下落和放置逻辑
     
@@ -25,6 +25,10 @@ _算法无力，智商归零，不知猴年马月继续填坑。(:3」∠)_
         - [ ] 极端情况下 javafx 无法绘制，缓存溢出：
         
         `java.nio.BufferOverFlowException`
+        
+    * ###### 待实现功能列表: 
+    
+        - [ ] 添加音效与背景音乐（8 Bit）（大坑待填）
 
 * #### alpha 2 commit
 
