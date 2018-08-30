@@ -63,14 +63,7 @@ class GameController implements ControlInterface {
     public void start() {
         if (!isStart) {
             isStart = true;
-            lc = new LogicController();
-            re.startRender(Color.GRAY);
-            re.scoreBoardRender(0, 0, 1, Color.GRAY);
-            lc.start();
-        }
-        else{
-            lc.exit();
-            isStart = true;
+            isPause = false;
             lc = new LogicController();
             re.startRender(Color.GRAY);
             re.scoreBoardRender(0, 0, 1, Color.GRAY);

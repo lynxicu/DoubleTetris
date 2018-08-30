@@ -37,7 +37,15 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 gc.blockMoveRight(0);
                 break;
             case S:
-                gc.blockMoveDown(0);
+                if (ke_m.isShiftDown()) {
+                    for (int i = 0; i < GameBox._boxRow; ++i) {
+                        gc.blockMoveDown(0);
+                    }
+                }
+                else {
+                    gc.blockMoveDown(0);
+                }
+
                 break;
             case UP:
                 gc.blockRotate(1);
@@ -49,7 +57,15 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 gc.blockMoveRight(1);
                 break;
             case DOWN:
-                gc.blockMoveDown(1);
+                if (ke_m.isControlDown()) {
+                    for (int i = 0; i < GameBox._boxRow; ++i) {
+                        gc.blockMoveDown(1);
+                    }
+                }
+                else {
+                    gc.blockMoveDown(1);
+                }
+
                 break;
         }
     }

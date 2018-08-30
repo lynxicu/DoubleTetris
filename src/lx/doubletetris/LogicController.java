@@ -28,17 +28,24 @@ public class LogicController implements ControlInterface {
     @Override
     public void pause() {
         if (!GameController.getIsPause()) {
-            stopTimer(t);
+            stopTimer();
             pauseRender();
-        } else {
+        }
+        else {
+            reRender();
             t = new Timer();
-            startTimer(t, step);
+            t.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    startTimer(t, step);
+                }
+            }, step);
         }
     }
 
     @Override
     public void exit() {
-        stopTimer(t);
+        stopTimer();
         gameOverRender();
         GameController.setGameOver();
     }
@@ -339,18 +346,7 @@ public class LogicController implements ControlInterface {
         t_m.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (isDownMovable()) {
-                    block[0].moveDown();
-                    block[1].moveDown();
-                }
-                else if (isDownMovable(0) && !isDownMovable(1)) {
-                    block[0].moveDown();
-                }
-                else if (!isDownMovable(0) && isDownMovable(1)) {
-                    block[1].moveDown();
-                }
-
-                reRender();
+                boolean isOver = false;
                 int[] player = null;
 
                 if (isSettable()) {
@@ -372,30 +368,46 @@ public class LogicController implements ControlInterface {
                             block[i].setBlockXY(randomX(i), 0);
                             reRender();
                         } else {
+                            isOver = true;
+                            this.cancel();
                             exit();
                         }
                     }
                 }
 
-                int line = box.clear();
+                if (!isOver) {
+                    if (isDownMovable()) {
+                        block[0].moveDown();
+                        block[1].moveDown();
+                    } else if (isDownMovable(0) && !isDownMovable(1)) {
+                        block[0].moveDown();
+                    } else if (!isDownMovable(0) && isDownMovable(1)) {
+                        block[1].moveDown();
+                    }
 
-                if (0 != line) {
                     reRender();
-                    sc.count(line);
-                    int stepTmp = sc.getStep();
+                    int line = box.clear();
 
-                    if (stepTmp != step_m) {
-                        t = new Timer();
-                        startTimer(t_m, stepTmp);
-                        this.cancel();
+                    if (0 != line) {
+                        reRender();
+                        sc.count(line);
+                        int stepTmp = sc.getStep();
+
+                        if (stepTmp != step_m) {
+                            this.cancel();
+                            stopTimer();
+                            t = new Timer();
+                            startTimer(t, stepTmp);
+                        }
                     }
                 }
             }
         }, 0, step_m);
     }
 
-    private void stopTimer(Timer t_m) {
-        t_m.cancel();
+    private void stopTimer() {
+        t.cancel();
+        t.purge();
     }
 
     private void reRender() {

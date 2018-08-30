@@ -257,8 +257,8 @@ class Renderer extends Canvas {
         info.setTitle("Help Info");
         info.setHeaderText("按 Enter 键开始/重新开始游戏\n按 P 键暂停/恢复游戏\n按 Esc 键退出游戏");
         info.setContentText(
-            "Player 1:\n按 A 键向左移动方块\n按 D 键向右移动方块\n按 W 键旋转方块\n按 S 键加速方块\n" +
-            "\nPlayer 2:\n按 ← 键向左移动方块\n按 → 键向右移动方块\n按 ↑ 键旋转方块\n按 ↓ 键加速方块\n" +
+            "Player 1:\n按 A 键向左移动方块\n按 D 键向右移动方块\n按 W 键旋转方块\n按 S 键向下移动方块，Shift 键加速方块\n" +
+            "\nPlayer 2:\n按 ← 键向左移动方块\n按 → 键向右移动方块\n按 ↑ 键旋转方块\n按 ↓ 键向下移动方块，Ctrl 键加速方块\n" +
             "\n计分规则：\n连续消除 1 / 2 / 3 / 4 / 5 / 6 / 7 / 8 行\n" +
             "分别获得 10 / 30 / 60 / 100 / 150 / 210 / 280 / 360 分\n" +
             "等级提升 1 / 2 / 3 / 4 / 5 / 6 / 7 / 8 级\n" +
