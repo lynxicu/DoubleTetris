@@ -8,7 +8,7 @@
     
     * ###### 已知 bugs 列表：
     
-        - [ ] 反复重新开始游戏导致程序卡死或定时器无限循环
+        - [ ] 反复重新开始游戏导致程序卡死或定时器无限循环（定时器间隔低于 10 ms 可复现）
 
 * #### alpha 3 commit -> alpha 3 release
 
@@ -20,11 +20,11 @@
     
         - [x] （重新提交 / alpha 4 commit）极端情况下反复重新开始游戏导致程序卡死或定时器无限循环
     
-        - [ ] 由于反复重新开始游戏后未知情况导致的 javafx 无法绘制，缓冲区溢出：
+        - [ ] 由于反复重新开始游戏后未知情况导致的 javafx 无法绘制，缓冲区溢出（定时器间隔低于 10 ms 可复现）：
         
         `java.nio.BufferOverFlowException`
         
-        - [ ] 由于反复重新开始游戏后未知情况导致的类型转换异常：
+        - [ ] 由于反复重新开始游戏后未知情况导致的类型转换异常 （正常情况下有几率复现）：
         
         `java.lang.ClassCastException: com.sun.javafx.font.PrismFont cannot be cast to com.sun.prism.paint.Paint`
         
@@ -32,7 +32,7 @@
         
         `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to java.lang.String`
         
-        - [ ] 由于反复重新开始游戏后未知情况导致的 javafx 异常：
+        - [ ] 由于反复重新开始游戏后未知情况导致的 javafx 异常（正常情况下有几率复现）：
         
         `java.lang.InternalError: Unrecognized PGCanvas token: 68`
         
