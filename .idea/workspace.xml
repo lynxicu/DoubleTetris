@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="13dec2f9-f083-4e61-8a86-da97453d8fb6" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/LogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/LogicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lx/doubletetris/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lx/doubletetris/Renderer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,21 +86,39 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1004954152">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="2754" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="2754" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FavoritesManager">
     <favorites_list name="DoubleTetris" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+            <state>
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#261#262#0" expanded="true" />
-                <element signature="e#297#298#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,8 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="252" column="5" selection-start-line="252" selection-start-column="5" selection-end-line="252" selection-end-column="5" />
+            <state relative-caret-position="285">
+              <caret line="33" column="10" lean-forward="true" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,11 +136,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-417">
-              <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+            <state relative-caret-position="-19">
+              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
               <folding>
                 <element signature="e#282#283#0" expanded="true" />
                 <element signature="e#307#308#0" expanded="true" />
@@ -129,8 +150,6 @@
                 <element signature="e#437#438#0" expanded="true" />
                 <element signature="e#470#471#0" expanded="true" />
                 <element signature="e#501#502#0" expanded="true" />
-                <element signature="e#2889#2890#0" expanded="true" />
-                <element signature="e#2919#2920#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,24 +158,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/LogicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
+            <state relative-caret-position="11210">
+              <caret line="590" column="9" selection-start-line="590" selection-start-column="9" selection-end-line="590" selection-end-column="9" />
               <folding>
+                <element signature="e#0#21072#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#891#1043#0" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#20217#20218#0" expanded="true" />
-                <element signature="e#20239#20240#0" expanded="true" />
-                <element signature="e#20263#20264#0" expanded="true" />
-                <element signature="e#20285#20286#0" expanded="true" />
-                <element signature="e#20308#20309#0" expanded="true" />
-                <element signature="e#20330#20331#0" expanded="true" />
-                <element signature="e#20571#20572#0" expanded="true" />
-                <element signature="e#20599#20600#0" expanded="true" />
-                <element signature="e#20620#20621#0" expanded="true" />
-                <element signature="e#20647#20648#0" expanded="true" />
-                <element signature="e#20669#20670#0" expanded="true" />
-                <element signature="e#20697#20698#0" expanded="true" />
+                <element signature="e#900#1052#0" expanded="true" />
+                <element signature="e#1051#1052#0" expanded="true" />
+                <element signature="e#10662#12719#0" expanded="true" />
+                <element signature="e#12718#12719#0" expanded="true" />
+                <element signature="e#14332#14333#0" expanded="true" />
+                <element signature="e#14379#14380#0" expanded="true" />
+                <element signature="e#14403#14404#0" expanded="true" />
+                <element signature="e#14429#14430#0" expanded="true" />
+                <element signature="e#14713#14714#0" expanded="true" />
+                <element signature="e#14761#14762#0" expanded="true" />
+                <element signature="e#17110#17111#0" expanded="true" />
+                <element signature="e#17141#17142#0" expanded="true" />
+                <element signature="e#17170#17171#0" expanded="true" />
+                <element signature="e#17198#17199#0" expanded="true" />
+                <element signature="e#17471#17472#0" expanded="true" />
+                <element signature="e#17502#17503#0" expanded="true" />
+                <element signature="e#17529#17530#0" expanded="true" />
+                <element signature="e#17557#17558#0" expanded="true" />
+                <element signature="e#17575#17576#0" expanded="true" />
+                <element signature="e#17599#17600#0" expanded="true" />
+                <element signature="e#17617#17618#0" expanded="true" />
+                <element signature="e#17641#17642#0" expanded="true" />
+                <element signature="e#17662#17663#0" expanded="true" />
+                <element signature="e#17694#17695#0" expanded="true" />
+                <element signature="e#20461#20462#0" expanded="true" />
+                <element signature="e#20489#20490#0" expanded="true" />
+                <element signature="e#20510#20511#0" expanded="true" />
+                <element signature="e#20537#20538#0" expanded="true" />
+                <element signature="e#20559#20560#0" expanded="true" />
+                <element signature="e#20587#20588#0" expanded="true" />
+                <element signature="e#20608#20609#0" expanded="true" />
+                <element signature="e#20635#20636#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,8 +203,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="190" column="19" lean-forward="true" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="23" />
+            <state relative-caret-position="3458">
+              <caret line="182" column="7" selection-start-line="182" selection-start-column="7" selection-end-line="182" selection-end-column="7" />
+              <folding>
+                <element signature="e#4320#4321#0" expanded="true" />
+                <element signature="e#4372#4373#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -174,8 +216,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="342">
+              <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -183,12 +225,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1133">
-              <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
+            <state relative-caret-position="380">
+              <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#263#264#0" expanded="true" />
-                <element signature="e#288#289#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -259,16 +299,16 @@
         <option value="$PROJECT_DIR$/src/lx/doubletetris/LogicInterface.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/BasePool.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/RandomBlock.java" />
-        <option value="$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/Logic.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/EventManager.java" />
-        <option value="$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/EventHandler.java" />
-        <option value="$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java" />
+        <option value="$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/Renderer.java" />
-        <option value="$PROJECT_DIR$/src/lx/doubletetris/LogicController.java" />
-        <option value="$PROJECT_DIR$/src/lx/doubletetris/GameController.java" />
         <option value="$PROJECT_DIR$/src/lx/doubletetris/Main.java" />
+        <option value="$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java" />
+        <option value="$PROJECT_DIR$/src/lx/doubletetris/GameController.java" />
+        <option value="$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java" />
+        <option value="$PROJECT_DIR$/src/lx/doubletetris/LogicController.java" />
       </list>
     </option>
   </component>
@@ -286,21 +326,22 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="ss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="DoubleTetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DoubleTetris" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="DoubleTetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DoubleTetris" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ss" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ss" type="462c0819:PsiDirectoryNode" />
+              <item name="DoubleTetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DoubleTetris" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="doubletetris" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -308,7 +349,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,17 +401,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49468085" visible="true" weight="0.16149506" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49468085" visible="true" weight="0.16122234" />
       <window_info id="Structure" order="1" sideWeight="0.5046481" side_tool="true" weight="0.06346968" />
       <window_info id="设计师" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.5009901" side_tool="true" weight="0.15444288" />
       <window_info id="Designer" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32934928" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4992948" visible="true" weight="0.30718085" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4992948" visible="true" weight="0.30686694" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997344" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -479,13 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Java/jdk/javafx-src.zip!/com/sun/javafx/sg/prism/NGCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
@@ -493,41 +526,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="33" column="10" lean-forward="true" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/ControlInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/BlockSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="190" column="19" lean-forward="true" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="23" />
+        <state relative-caret-position="3458">
+          <caret line="182" column="7" selection-start-line="182" selection-start-column="7" selection-end-line="182" selection-end-column="7" />
+          <folding>
+            <element signature="e#4320#4321#0" expanded="true" />
+            <element signature="e#4372#4373#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/LogicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
+        <state relative-caret-position="11210">
+          <caret line="590" column="9" selection-start-line="590" selection-start-column="9" selection-end-line="590" selection-end-column="9" />
           <folding>
+            <element signature="e#0#21072#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#891#1043#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#20217#20218#0" expanded="true" />
-            <element signature="e#20239#20240#0" expanded="true" />
-            <element signature="e#20263#20264#0" expanded="true" />
-            <element signature="e#20285#20286#0" expanded="true" />
-            <element signature="e#20308#20309#0" expanded="true" />
-            <element signature="e#20330#20331#0" expanded="true" />
-            <element signature="e#20571#20572#0" expanded="true" />
-            <element signature="e#20599#20600#0" expanded="true" />
-            <element signature="e#20620#20621#0" expanded="true" />
-            <element signature="e#20647#20648#0" expanded="true" />
-            <element signature="e#20669#20670#0" expanded="true" />
-            <element signature="e#20697#20698#0" expanded="true" />
+            <element signature="e#900#1052#0" expanded="true" />
+            <element signature="e#1051#1052#0" expanded="true" />
+            <element signature="e#10662#12719#0" expanded="true" />
+            <element signature="e#12718#12719#0" expanded="true" />
+            <element signature="e#14332#14333#0" expanded="true" />
+            <element signature="e#14379#14380#0" expanded="true" />
+            <element signature="e#14403#14404#0" expanded="true" />
+            <element signature="e#14429#14430#0" expanded="true" />
+            <element signature="e#14713#14714#0" expanded="true" />
+            <element signature="e#14761#14762#0" expanded="true" />
+            <element signature="e#17110#17111#0" expanded="true" />
+            <element signature="e#17141#17142#0" expanded="true" />
+            <element signature="e#17170#17171#0" expanded="true" />
+            <element signature="e#17198#17199#0" expanded="true" />
+            <element signature="e#17471#17472#0" expanded="true" />
+            <element signature="e#17502#17503#0" expanded="true" />
+            <element signature="e#17529#17530#0" expanded="true" />
+            <element signature="e#17557#17558#0" expanded="true" />
+            <element signature="e#17575#17576#0" expanded="true" />
+            <element signature="e#17599#17600#0" expanded="true" />
+            <element signature="e#17617#17618#0" expanded="true" />
+            <element signature="e#17641#17642#0" expanded="true" />
+            <element signature="e#17662#17663#0" expanded="true" />
+            <element signature="e#17694#17695#0" expanded="true" />
+            <element signature="e#20461#20462#0" expanded="true" />
+            <element signature="e#20489#20490#0" expanded="true" />
+            <element signature="e#20510#20511#0" expanded="true" />
+            <element signature="e#20537#20538#0" expanded="true" />
+            <element signature="e#20559#20560#0" expanded="true" />
+            <element signature="e#20587#20588#0" expanded="true" />
+            <element signature="e#20608#20609#0" expanded="true" />
+            <element signature="e#20635#20636#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-417">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+        <state relative-caret-position="-19">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding>
             <element signature="e#282#283#0" expanded="true" />
             <element signature="e#307#308#0" expanded="true" />
@@ -537,42 +630,6 @@
             <element signature="e#437#438#0" expanded="true" />
             <element signature="e#470#471#0" expanded="true" />
             <element signature="e#501#502#0" expanded="true" />
-            <element signature="e#2889#2890#0" expanded="true" />
-            <element signature="e#2919#2920#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="252" column="5" selection-start-line="252" selection-start-column="5" selection-end-line="252" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/KeyResponder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1133">
-          <caret line="65" column="38" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lx/doubletetris/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#261#262#0" expanded="true" />
-            <element signature="e#297#298#0" expanded="true" />
           </folding>
         </state>
       </provider>

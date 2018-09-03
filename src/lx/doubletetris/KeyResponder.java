@@ -3,6 +3,9 @@ package lx.doubletetris;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
+// 键盘响应器类
+// 继承 javafx.event.EventHandler 类
+// 响应对应按键，实现游戏控制
 public class KeyResponder implements EventHandler<KeyEvent> {
     private GameController gc;
 
@@ -12,8 +15,10 @@ public class KeyResponder implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent ke_m) {
+        // consume() 方法防止键盘事件继续传播
         ke_m.consume();
 
+        // 根据对应按键调用游戏控制器
         switch (ke_m.getCode()) {
             case ENTER:
                 gc.start();
@@ -37,16 +42,10 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 gc.blockMoveRight(0);
                 break;
             case S:
-                if (ke_m.isShiftDown()) {
-                    for (int i = 0; i < GameBox._boxRow; ++i) {
-                        gc.blockMoveDown(0);
-                    }
-                }
-                else {
-                    gc.blockMoveDown(0);
-                }
-
+                gc.blockMoveDown(0);
                 break;
+            case SHIFT:
+                gc.blockQuickMoveDown(0);
             case UP:
                 gc.blockRotate(1);
                 break;
@@ -57,16 +56,11 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 gc.blockMoveRight(1);
                 break;
             case DOWN:
-                if (ke_m.isControlDown()) {
-                    for (int i = 0; i < GameBox._boxRow; ++i) {
-                        gc.blockMoveDown(1);
-                    }
-                }
-                else {
-                    gc.blockMoveDown(1);
-                }
-
+                gc.blockMoveDown(1);
                 break;
-        }
+            case CONTROL:
+                gc.blockQuickMoveDown(1);
+                break;
+        }   // 根据对应按键调用游戏控制器
     }
 }

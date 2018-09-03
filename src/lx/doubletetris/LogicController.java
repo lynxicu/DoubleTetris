@@ -1,9 +1,16 @@
+/*
+ * ********* 注意，该部分代码逻辑较为混乱
+ */
+
 package lx.doubletetris;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.paint.Color;
 
+// 逻辑控制器类
+// 实现 ControllerInterface 接口
+// 储存基本游戏信息，完成游戏各项操作
 public class LogicController implements ControlInterface {
     private GameBox box;
     private Block[] block;
@@ -82,6 +89,13 @@ public class LogicController implements ControlInterface {
         if (isDownMovable(player_m)) {
             block[player_m].moveDown();
             reRender();
+        }
+    }
+
+    @Override
+    public void blockQuickMoveDown(int player_m) {
+        for (int i = 0; i < GameBox._boxRow; ++i) {
+            blockMoveDown(player_m);
         }
     }
 
@@ -434,20 +448,25 @@ public class LogicController implements ControlInterface {
     }
 }
 
+// 盒子类
+// 储存游戏盒子中的方块信息
 class GameBox {
     final static int _boxRow = 20 + Block._blockRow;
     final static int _boxCol = 24;
 
     private int[][] box;
 
+    // 初始化盒子
     GameBox() {
         box = new int[_boxRow][_boxCol];
     }
 
+    // 返回可修改的盒子信息（即 Box 二维数组的引用）
     int[][] getBox() {
         return box;
     }
 
+    // 返回盒子信息副本
     int[][] getBoxClone() {
         int[][] boxTmp = new int[_boxRow][_boxCol];
 
@@ -457,10 +476,12 @@ class GameBox {
         return boxTmp;
     }
 
+    // 放置方块
     void setBlock(int[][] block_m, int x_m, int y_m) {
         setBlock(box, block_m, x_m, y_m);
     }
 
+    // 静态方法，放置方块，实现不同参数的方块放置
     static void setBlock(int[][] box_m, int[][] block_m, int x_m, int y_m) {
         for (int row = 0; row < Block._blockRow; ++row)
             for (int col = 0; col < Block._blockCol; ++col)
@@ -468,6 +489,7 @@ class GameBox {
                     box_m[y_m + row][x_m + col] += 1;
     }
 
+    // 消除盒子中满足条件的方块，返回一次消除的行数
     int clear() {
         int clearRow = 0;
 
@@ -495,6 +517,8 @@ class GameBox {
     }
 }
 
+// 方块类
+// 储存方块信息
 class Block {
     final static int _blockRow = 4;
     final static int _blockCol = 4;
@@ -505,6 +529,7 @@ class Block {
     private int x;
     private int y;
 
+    // 初始化方块
     Block(int player_m) {
         blockSet = new BlockSet();
         block = new int[3][_blockRow][_blockCol];
@@ -517,6 +542,7 @@ class Block {
         color[2] = blockSet.getBlockColor((int)(Math.random() * BlockSet._blockColorAmount[player_m]), player_m);
     }
 
+    // 更新方块
     void newBlock(int player_m) {
         block[0] = block[1];
         block[1] = block[2];
@@ -526,19 +552,23 @@ class Block {
         color[2] = blockSet.getBlockColor((int)(Math.random() * BlockSet._blockColorAmount[player_m]), player_m);
     }
 
+    // 设置方块坐标
     void setBlockXY(int x_m, int y_m) {
         x = x_m;
         y = y_m;
     }
 
+    // 返回可修改的方块信息（即 Block[] 二维数组的引用）
     int[][] getBlock() {
         return block[0];
     }
 
+    // 返回可修改的方块组信息（即 Block 三维数组的引用）
     int[][][] getBlocks() {
         return block;
     }
 
+    // 返回方块信息副本
     int[][] getBlockClone() {
         int[][] blockTmp = new int[_blockRow][_blockCol];
 
@@ -548,14 +578,17 @@ class Block {
         return blockTmp;
     }
 
+    // 返回单个方块的颜色信息
     Color getColor() {
         return color[0];
     }
 
+    // 返回方块组的颜色信息
     Color[] getColors() {
         return color;
     }
 
+    // 返回
     int getX() {
         return x;
     }
@@ -662,6 +695,8 @@ class Block {
     }
 }
 
+// 计分类
+// 储存分数信息，计算分数，调整游戏速度
 class ScoreCounter {
     private int score;
     private int line;

@@ -2,13 +2,16 @@ package lx.doubletetris;
 
 import javafx.scene.paint.Color;
 
+// 方块集合类
+// 储存方块形状与颜色信息
 class BlockSet {
     final static int _blockAmount = 28;
     final static int _blockColorAmount[] = {7, 7};
 
+    // 方块集合形状信息
     private int block[][][] = {
         /*
-            I 型方块
+         * I 型方块
          */
         {
             {1,0,0,0},
@@ -20,7 +23,7 @@ class BlockSet {
             {0,0,0,0},
             {0,0,0,0},
             {0,0,0,0}
-        }, {   // 重复方块 平衡概率
+        }, {   // 重复方块，平衡概率。
             {1,0,0,0},
             {1,0,0,0},
             {1,0,0,0},
@@ -32,7 +35,7 @@ class BlockSet {
             {0,0,0,0}
         },
         /*
-            J 型方块
+         * J 型方块
          */
         {
             {0,1,0,0},
@@ -56,7 +59,7 @@ class BlockSet {
             {0,0,0,0}
         },
         /*
-            L 型方块
+         * L 型方块
          */
         {
             {0,0,1,0},
@@ -80,14 +83,14 @@ class BlockSet {
             {0,0,0,0}
         },
         /*
-            O 型方块
+         * O 型方块
          */
         {
             {1,1,0,0},
             {1,1,0,0},
             {0,0,0,0},
             {0,0,0,0}
-        }, {   // 重复方块 平衡概率
+        }, {   // 重复方块，平衡概率。
             {1,1,0,0},
             {1,1,0,0},
             {0,0,0,0},
@@ -104,7 +107,7 @@ class BlockSet {
             {0,0,0,0}
         },
         /*
-            S 型方块
+         * S 型方块
          */
         {
             {0,1,1,0},
@@ -116,7 +119,7 @@ class BlockSet {
             {1,1,0,0},
             {0,1,0,0},
             {0,0,0,0}
-        }, {   // 重复方块 平衡概率
+        }, {   // 重复方块，平衡概率。
             {0,1,1,0},
             {1,1,0,0},
             {0,0,0,0},
@@ -127,7 +130,9 @@ class BlockSet {
             {0,1,0,0},
             {0,0,0,0}
         },
-        // T 型方块
+        /*
+         * T 型方块
+         */
         {
             {0,1,0,0},
             {1,1,0,0},
@@ -150,7 +155,7 @@ class BlockSet {
             {0,0,0,0}
         },
         /*
-            Z 型方块
+         * Z 型方块
          */
         {
             {0,1,0,0},
@@ -162,7 +167,7 @@ class BlockSet {
             {0,1,1,0},
             {0,0,0,0},
             {0,0,0,0}
-        }, {   // 重复方块 平衡概率
+        }, {   // 重复方块，平衡概率。
             {0,1,0,0},
             {1,1,0,0},
             {1,0,0,0},
@@ -175,6 +180,7 @@ class BlockSet {
         }
     };
 
+    // 方块集合颜色信息
     private Color blockColor[][] = {
         {
             Color.RED,
@@ -196,6 +202,7 @@ class BlockSet {
         }
     };
 
+    // 获取方块形状信息
     int[][] getBlock(int index_m) {
         int[][] blockTmp = new int[Block._blockRow][Block._blockCol];
 
@@ -206,6 +213,7 @@ class BlockSet {
         return blockTmp;
     }
 
+    // 获取方块颜色信息
     Color getBlockColor(int index_m, int player_m) {
         return blockColor[player_m][index_m];
     }

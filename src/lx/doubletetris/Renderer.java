@@ -8,6 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+// Canvas 绘制器类
+// 继承 javafx.scene.canvas.Canvas 类
+// 实现各类界面的绘制
 class Renderer extends Canvas {
     private final static int _canvasWidth = 1250;
     private final static int _canvasHeight = 750;
@@ -24,21 +27,26 @@ class Renderer extends Canvas {
     private final int _statusHeight = 45;
     private final int _statusX = _boxX + 200;
     private final int _statusY = _boxY + 200;
-    
-    private GraphicsContext gc = getGraphicsContext2D();
 
+    // 声明并创建 GraphicContext 对象 gc，获取 Canvas 的 2D 图形环境
+    private GraphicsContext gc = getGraphicsContext2D();   //
+
+    // 初始化，绘制初始界面
     Renderer() {
-        super(_canvasWidth, _canvasHeight);
+        // 调用基类构造函数创建 Canvas 对象（画布）
+        super(_canvasWidth, _canvasHeight);   //
         canvasBorderRender(Color.BLACK);
         canvasMainRender();
     }
 
+    // 绘制 Canvas 边框
     private void canvasBorderRender(Color color) {
         gc.setStroke(color);
         gc.setLineWidth(_border);
         gc.strokeRect(0,0, _canvasWidth, _canvasHeight);
     }
 
+    // 绘制主界面 ********* 早期版本，需要后期改进
     private void canvasMainRender() {
         gc.setStroke(Color.RED);
         gc.setLineWidth(_blockBorder);
@@ -128,6 +136,7 @@ class Renderer extends Canvas {
                 gc.strokeRoundRect(100 + i * (_blockWidth + _blockBorder), 633, _blockWidth, _blockHeight, _arcSize, _arcSize);
         }
 
+        // 使用 Timer 定时器完成定时交替绘制实现闪烁效果
         Timer t = new Timer();
 
         t.schedule(new TimerTask() {
@@ -159,14 +168,16 @@ class Renderer extends Canvas {
                 else
                     cancel();
             }
-        }, 0, 300);
+        }, 0, 300);   //
     }
 
+    // 游戏开始时清空画布，重绘 Canvas 边框
     void startRender(Color color_m) {
         gc.clearRect(0, 0, _canvasWidth, _canvasHeight);
         canvasBorderRender(color_m);
     }
 
+    // Box（盒子）内 Block（方块）绘制
     void boxRender(int[][] box_m, Color color_m) {
         gc.clearRect(_boxX, _boxY, _boxWidth, _boxHeight);
         gc.setStroke(color_m);
@@ -178,12 +189,14 @@ class Renderer extends Canvas {
                     gc.strokeRoundRect(_boxX + 2 * _border + col * (2 * _border + _blockWidth + _blockBorder) + _blockBorder, _boxY + 2 * _border + (row - Block._blockRow) * (2 * _border + _blockHeight + _blockBorder) + _blockBorder, _blockWidth, _blockHeight, _arcSize, _arcSize);
     }
 
+    // Box（盒子）边框绘制
     void boxBorderRender(Color color_m) {
         gc.setStroke(color_m);
         gc.setLineWidth(_border);
         gc.strokeRoundRect(_boxX, _boxY, _boxWidth, _boxHeight, _arcSize, _arcSize);
     }
 
+    // Block（方块）绘制
     void blockRender(int[][] block_m, int x_m, int y_m, Color color_m) {
         gc.setStroke(color_m);
         gc.setLineWidth(_blockBorder);
@@ -194,6 +207,7 @@ class Renderer extends Canvas {
                     gc.strokeRoundRect(_boxX + 2 * _border + (col + x_m) * (2 * _border + _blockWidth + _blockBorder) + _blockBorder, _boxY + 2 * _border + (row + y_m - Block._blockRow) * (2 * _border + _blockHeight + _blockBorder) + _blockBorder, _blockWidth, _blockHeight, _arcSize, _arcSize);
     }
 
+    // 方块预览界面绘制
     void blockPreviewRender(int[][][] blocks_m, Color[] colors_m, int player_m) {
         final int[] _previewX = {30, 30 + _boxX + _boxWidth + _border};
         final int _previewY = 30;
@@ -214,6 +228,7 @@ class Renderer extends Canvas {
         }
     }
 
+    // 记分板绘制
     void scoreBoardRender(int score_m, int line_m, int level_m, Color color_m) {
         final int _scoreX1 = 30;
         final int _scoreX2 = 30 + _boxX + _boxWidth + _border;
@@ -230,6 +245,7 @@ class Renderer extends Canvas {
         gc.fillText("Level: " + level_m, _scoreX2, _scoreY + _scoreHeight);
     }
 
+    // 游戏暂停界面绘制
     void pauseRender() {
         gc.setFill(Color.WHITE);
         gc.fillRect(_statusX + _border, _statusY + _border, _statusWidth - 2 * _border, _statusHeight - 2 * _border);
@@ -241,6 +257,7 @@ class Renderer extends Canvas {
         gc.fillText("游戏暂停", _statusX + _border, _statusY +  _border + 32);
     }
 
+    // 游戏结束界面绘制
     void gameOverRender() {
         gc.setFill(Color.WHITE);
         gc.fillRect(_statusX + _border, _statusY + _border, _statusWidth - 2 * _border, _statusHeight - 2 * _border);
@@ -252,6 +269,7 @@ class Renderer extends Canvas {
         gc.fillText("游戏结束", _statusX + _border, _statusY + _border + 32);
     }
 
+    // 创建 Alert 对象，弹出帮助信息
     void helpInfo() {
         Alert info = new Alert(Alert.AlertType.INFORMATION);
         info.setTitle("Help Info");
