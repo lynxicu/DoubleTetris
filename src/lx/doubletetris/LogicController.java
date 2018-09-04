@@ -99,6 +99,7 @@ public class LogicController implements ControlInterface {
         }
     }
 
+    // 检测方块是否能旋转
     private boolean isRotatable(int[] xy_m, int player_m) {
         boolean isRotatale = true;
         int[][] blockTmp = block[player_m].getBlockClone();
@@ -107,15 +108,17 @@ public class LogicController implements ControlInterface {
         int moveY = 0;
 
         if (isOutLeftRight(blockTmp, xy_m[0])) {
-            /*// 如果方块旋转后没有进行左对齐，需要启用该段代码，向右调整方块防止左越界检测数据溢出
-            int i;
+            /*
+             * 如果方块旋转后没有进行左对齐，需要启用该段代码，向右调整方块防止左越界检测数据溢出
+             */
+            /*int i;
 
             if (xy_m[0] < 0) {
                 i = 1;
             }
             else {
                 i = -1;
-            }   // 如果方块旋转后没有进行左对齐，需要启用该段代码，向右调整方块防止左越界检测数据溢出*/
+            }   */
 
             do {
                 --moveX; // 下一行代码启用时禁用该行，下一行代码禁用时启用该行
@@ -142,6 +145,7 @@ public class LogicController implements ControlInterface {
         return isRotatale;
     }
 
+    // 检测方块是否能左移
     private  boolean isLeftMovable(int player_m) {
         boolean isLeftMovable = true;
 
@@ -161,6 +165,7 @@ public class LogicController implements ControlInterface {
         return isLeftMovable;
     }
 
+    // 检测方块是否能右移
     private boolean isRightMovable(int player_m) {
         boolean isRightMovable = true;
 
@@ -180,6 +185,7 @@ public class LogicController implements ControlInterface {
         return isRightMovable;
     }
 
+    // 检测方块是否能下落
     private boolean isDownMovable(int player_m) {
         boolean isDownMovable = true;
 
@@ -199,6 +205,7 @@ public class LogicController implements ControlInterface {
         return isDownMovable;
     }
 
+    // 同时检测两个方块是否能下落
     private boolean isDownMovable() {
         boolean isDownMovable = true;
 
@@ -217,6 +224,7 @@ public class LogicController implements ControlInterface {
         return isDownMovable;
     }
 
+    // 检测方块是否能放置
     private boolean isSettable(int player_m) {
         boolean isSettable = false;
 
@@ -234,6 +242,7 @@ public class LogicController implements ControlInterface {
         return isSettable;
     }
 
+    // 同时检测两个方块是否能放置
     private boolean isSettable() {
         boolean isSettable = false;
 
@@ -265,6 +274,7 @@ public class LogicController implements ControlInterface {
         return isSettable;
     }
 
+    // 检测新方块的坐标是否冲突
     private boolean isPathImpact(int x_m, int player_m) {
         boolean isPathImpact = false;
 
@@ -287,6 +297,7 @@ public class LogicController implements ControlInterface {
         return isPathImpact;
     }
 
+    // 检测方块是否超出左右边界
     private boolean isOutLeftRight(int[][] block_m, int x_m) {
         boolean isOutLeftRight = false;
 
@@ -318,6 +329,7 @@ public class LogicController implements ControlInterface {
         return isOutLeftRight;
     }
 
+    // 检测方块是否超出下边界
     private boolean isOutBottom(int[][] block_m, int y_m) {
         boolean isOutBottom = false;
 
@@ -335,6 +347,7 @@ public class LogicController implements ControlInterface {
         return isOutBottom;
     }
 
+    // 检测方块是否碰撞
     private boolean isCollision(int[][] box_m) {
         boolean isCollision = false;
 
@@ -346,6 +359,7 @@ public class LogicController implements ControlInterface {
         return isCollision;
     }
 
+    // 随机生成新方块的 x 坐标
     private int randomX(int player_m) {
         int x;
 
@@ -356,6 +370,7 @@ public class LogicController implements ControlInterface {
         return x;
     }
 
+    // 启动定时器控制游戏
     private void startTimer(Timer t_m, int step_m) {
         t_m.schedule(new TimerTask() {
             @Override
@@ -363,6 +378,7 @@ public class LogicController implements ControlInterface {
                 boolean isOver = false;
                 int[] player = null;
 
+                // 检测方块是否能放置，并进行放置操作
                 if (isSettable()) {
                     player = new int[]{0, 1};
                 }
@@ -371,8 +387,9 @@ public class LogicController implements ControlInterface {
                 }
                 else if (isSettable(1)) {
                     player = new int[]{1};
-                }
+                }   //
 
+                // 方块放置后生成新方块
                 if (null != player) {
                     for (int i : player) {
                         box.setBlock(block[i].getBlock(), block[i].getX(), block[i].getY());
@@ -387,19 +404,24 @@ public class LogicController implements ControlInterface {
                             exit();
                         }
                     }
-                }
+                }   //
+
 
                 if (!isOver) {
+                    // 方块下落
                     if (isDownMovable()) {
                         block[0].moveDown();
                         block[1].moveDown();
-                    } else if (isDownMovable(0) && !isDownMovable(1)) {
-                        block[0].moveDown();
-                    } else if (!isDownMovable(0) && isDownMovable(1)) {
-                        block[1].moveDown();
                     }
+                    else if (isDownMovable(0) && !isDownMovable(1)) {
+                        block[0].moveDown();
+                    }
+                    else if (!isDownMovable(0) && isDownMovable(1)) {
+                        block[1].moveDown();
+                    }   //
 
                     reRender();
+                    //消除方块，统计得分，调整游戏速度
                     int line = box.clear();
 
                     if (0 != line) {
@@ -413,17 +435,19 @@ public class LogicController implements ControlInterface {
                             t = new Timer();
                             startTimer(t, stepTmp);
                         }
-                    }
+                    }   //
                 }
             }
         }, 0, step_m);
     }
 
+    // 停止定时器
     private void stopTimer() {
         t.cancel();
         t.purge();
     }
 
+    // 重绘 Box 和 Block，重绘方块预览界面，重绘记分板
     private void reRender() {
         GameController.reRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[0].getColor(), block[1].getBlock(), block[1].getX(), block[1].getY(), block[1].getColor());
         GameController.blockPreviewRerender(block[0].getBlocks(), block[0].getColors(), 0);
@@ -431,6 +455,7 @@ public class LogicController implements ControlInterface {
         GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GRAY);
     }
 
+    // 绘制游戏暂停界面
     private void pauseRender() {
         GameController.pauseRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[1].getBlock(), block[1].getX(), block[1].getY());
         Color[] colors = {Color.GRAY, Color.GRAY, Color.GRAY};
@@ -439,6 +464,7 @@ public class LogicController implements ControlInterface {
         GameController.scoreBoardRender(sc.getScore(), sc.getLine(), sc.getLevel(), Color.GREEN);
     }
 
+    // 绘制游戏结束界面
     private void gameOverRender() {
         GameController.gameOverRender(box.getBox(), block[0].getBlock(), block[0].getX(), block[0].getY(), block[1].getBlock(), block[1].getX(), block[1].getY());
         Color[] colors = {Color.RED, Color.RED, Color.RED};
@@ -461,12 +487,12 @@ class GameBox {
         box = new int[_boxRow][_boxCol];
     }
 
-    // 返回可修改的盒子信息（即 Box 二维数组的引用）
+    // 获取可修改的盒子信息（即 Box 二维数组的引用）
     int[][] getBox() {
         return box;
     }
 
-    // 返回盒子信息副本
+    // 获取盒子信息副本
     int[][] getBoxClone() {
         int[][] boxTmp = new int[_boxRow][_boxCol];
 
@@ -489,7 +515,7 @@ class GameBox {
                     box_m[y_m + row][x_m + col] += 1;
     }
 
-    // 消除盒子中满足条件的方块，返回一次消除的行数
+    // 消除盒子中满足条件的方块，获取一次消除的行数
     int clear() {
         int clearRow = 0;
 
@@ -558,17 +584,17 @@ class Block {
         y = y_m;
     }
 
-    // 返回可修改的方块信息（即 Block[] 二维数组的引用）
+    // 获取可修改的当前方块信息（即 Block[] 二维数组的引用）
     int[][] getBlock() {
         return block[0];
     }
 
-    // 返回可修改的方块组信息（即 Block 三维数组的引用）
+    // 获取可修改的方块组信息（即 Block 三维数组的引用）
     int[][][] getBlocks() {
         return block;
     }
 
-    // 返回方块信息副本
+    // 获取当前方块信息副本
     int[][] getBlockClone() {
         int[][] blockTmp = new int[_blockRow][_blockCol];
 
@@ -578,32 +604,36 @@ class Block {
         return blockTmp;
     }
 
-    // 返回单个方块的颜色信息
+    // 获取当前方块的颜色信息
     Color getColor() {
         return color[0];
     }
 
-    // 返回方块组的颜色信息
+    // 获取方块组的颜色信息
     Color[] getColors() {
         return color;
     }
 
-    // 返回
+    // 获取当前方块 x 坐标
     int getX() {
         return x;
     }
 
+    // 获取当前方块 y 坐标
     int getY() {
         return y;
     }
 
+    // 旋转当前方块
     void rotate() {
         rotate(block[0]);
     }
 
+    // 静态方法，旋转方块，实现不同参数的方块旋转
     static void rotate(int[][] block_m) {
         int length = block_m.length;
 
+        // 顺时针 90 度旋转二维数组
         for (int row = 0; row < length / 2; ++row) {
             int pos = length - row - 1;
 
@@ -614,7 +644,7 @@ class Block {
                 block_m[pos][pos - col + row] = block_m[col][pos];
                 block_m[col][pos] = tmp;
             }
-        }
+        }   //
 
         // 在方块旋转后进行左对齐
         int emptyLine = 0;
@@ -682,27 +712,31 @@ class Block {
         }   // 在方块旋转后进行左对齐
     }
 
+    // 当前方块向左移动 1 格
     void moveLeft() {
         x -= 1;
     }
 
+    // 当前方块向右移动 1 格
     void moveRight() {
         x += 1;
     }
 
+    // 当前方块向下移动 1 格
     void moveDown() {
         y += 1;
     }
 }
 
 // 计分类
-// 储存分数信息，计算分数，调整游戏速度
+// 储存得分信息，计算得分，调整游戏速度
 class ScoreCounter {
     private int score;
     private int line;
     private int level;
     private int step;
 
+    // 初始化得分信息与游戏速度信息
     ScoreCounter() {
         score = 0;
         line = 0;
@@ -710,22 +744,27 @@ class ScoreCounter {
         step = 1000;
     }
 
+    // 获取得分
     int getScore() {
         return score;
     }
 
+    // 获取消除行数
     int getLine() {
         return line;
     }
 
+    // 获取等级
     int getLevel() {
         return level;
     }
 
+    // 获取游戏速度
     int getStep() {
         return step;
     }
 
+    // 计算得分与调整游戏速度
     void count(int line_m) {
         line += line_m;
         score += 5 * (line_m * line_m + line_m);   // 分数计算公式：5 * (n * n + n)
