@@ -13,3 +13,7 @@ _算法无力，智商归零，不知猴年马月继续填坑。(:3」∠)_
 * JDK 8u181
 
 * IntelliJ IDEA 2018.2 (Community Edition)
+
+## Changelogs
+
+* [详见 LOGS.md](https://github.com/Lynxicu/DoubleTetris/blob/master/LOGS.md)
