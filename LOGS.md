@@ -2,11 +2,17 @@
 
 ## Changelogs
 
+* #### alpha 5 commit -> alpha 5 release
+
+    * ###### 修改 Shift / Ctrl 键控制方块快速下落的逻辑
+    
+    * ###### 添加代码注释
+
 * #### alpha 4 commit
 
-    * ###### 添加了 Shift / Ctrl 键控制方块快速下落
+    * ###### 添加 Shift / Ctrl 键控制方块快速下落
     
-    * ###### 已知 bugs 列表：
+    * ###### Bug List：
     
         - [ ] 反复重新开始游戏导致程序卡死或定时器无限循环（定时器间隔低于 10 ms 可复现）
 
@@ -14,11 +20,11 @@
 
     * ###### 修改定时器的方块下落和放置逻辑
     
-    * ###### 已知 bugs 列表：
+    * ###### Bug List：
     
-        - [x] （已修复 / alpha 4 commit）游戏暂停后再次恢复会立即对所有方块进行一次移动
+        - [x] （_已修复 / alpha 4 commit_）游戏暂停后再次恢复会立即对所有方块进行一次移动
     
-        - [x] （重新提交 / alpha 4 commit）极端情况下反复重新开始游戏导致程序卡死或定时器无限循环
+        - [x] （_重新提交 / alpha 4 commit_）极端情况下反复重新开始游戏导致程序卡死或定时器无限循环
     
         - [ ] 由于反复重新开始游戏后未知情况导致的 javafx 无法绘制，缓冲区溢出（定时器间隔低于 10 ms 可复现）：
         
@@ -36,7 +42,7 @@
         
         `java.lang.InternalError: Unrecognized PGCanvas token: 68`
         
-    * ###### 待实现功能列表: 
+    * ###### Hope List: 
     
         - [ ] 添加音效与背景音乐（8 Bit）（_大坑待填_）
 
@@ -48,7 +54,7 @@
     
     * ###### 游戏操作基本实现
     
-    * ###### 已知 bugs 列表：
+    * ###### Bug List：
     
         - [x] （_已修复 / alpha 3 commit_）计分存在异常
         
@@ -62,9 +68,9 @@
         
         `java.lang.ClassCastException: com.sun.prism.paint.Color cannot be cast to com.sun.javafx.font.PGFont`
         
-    * ###### 待实现功能列表: 
+    * ###### Hope List: 
     
-        - [ ] 长按移动对应按键实现方块快速移动（目前使用 setOnKeyRelease 进行键盘事件监听, 仅能实现单次按键单次移动）
+        - [x] （_未实现，已替换功能 / alpha 5 commit_）长按移动对应按键实现方块快速移动（目前使用 setOnKeyRelease 进行键盘事件监听, 仅能实现单次按键单次移动）
         
         - [ ] 方块沿中心点旋转
         
