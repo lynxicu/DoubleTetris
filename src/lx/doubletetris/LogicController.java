@@ -149,8 +149,9 @@ public class LogicController implements ControlInterface {
     private  boolean isLeftMovable(int player_m) {
         boolean isLeftMovable = true;
 
-        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() - 1))
+        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() - 1)) {
             isLeftMovable = false;
+        }
 
         if (isLeftMovable) {
             int playerCheck = Math.abs(player_m - 1);
@@ -158,8 +159,9 @@ public class LogicController implements ControlInterface {
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX() - 1, block[player_m].getY());
             GameBox.setBlock(boxTmp, block[playerCheck].getBlock(), block[playerCheck].getX(), block[playerCheck].getY());
 
-            if (isCollision(boxTmp))
+            if (isCollision(boxTmp)) {
                 isLeftMovable = false;
+            }
         }
 
         return isLeftMovable;
@@ -169,8 +171,9 @@ public class LogicController implements ControlInterface {
     private boolean isRightMovable(int player_m) {
         boolean isRightMovable = true;
 
-        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() + 1))
+        if (isOutLeftRight(block[player_m].getBlock(), block[player_m].getX() + 1)) {
             isRightMovable = false;
+        }
 
         if (isRightMovable) {
             int playerCheck = Math.abs(player_m - 1);
@@ -178,8 +181,9 @@ public class LogicController implements ControlInterface {
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX() + 1, block[player_m].getY());
             GameBox.setBlock(boxTmp, block[playerCheck].getBlock(), block[playerCheck].getX(), block[playerCheck].getY());
 
-            if (isCollision(boxTmp))
+            if (isCollision(boxTmp)) {
                 isRightMovable = false;
+            }
         }
 
         return isRightMovable;
@@ -189,8 +193,9 @@ public class LogicController implements ControlInterface {
     private boolean isDownMovable(int player_m) {
         boolean isDownMovable = true;
 
-        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
+        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1)) {
             isDownMovable = false;
+        }
 
         if (isDownMovable) {
             int playerCheck = Math.abs(player_m - 1);
@@ -198,8 +203,9 @@ public class LogicController implements ControlInterface {
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
             GameBox.setBlock(boxTmp, block[playerCheck].getBlock(), block[playerCheck].getX(), block[playerCheck].getY());
 
-            if (isCollision(boxTmp))
+            if (isCollision(boxTmp)) {
                 isDownMovable = false;
+            }
         }
 
         return isDownMovable;
@@ -209,16 +215,18 @@ public class LogicController implements ControlInterface {
     private boolean isDownMovable() {
         boolean isDownMovable = true;
 
-        if (isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1))
+        if (isOutBottom(block[0].getBlock(), block[0].getY() + 1) || isOutBottom(block[1].getBlock(), block[1].getY() + 1)) {
             isDownMovable = false;
+        }
 
         if (isDownMovable) {
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[0].getBlock(), block[0].getX(), block[0].getY() + 1);
             GameBox.setBlock(boxTmp, block[1].getBlock(), block[1].getX(), block[1].getY() + 1);
 
-            if (isCollision(boxTmp))
+            if (isCollision(boxTmp)) {
                 isDownMovable = false;
+            }
         }
 
         return isDownMovable;
@@ -228,15 +236,17 @@ public class LogicController implements ControlInterface {
     private boolean isSettable(int player_m) {
         boolean isSettable = false;
 
-        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1))
+        if (isOutBottom(block[player_m].getBlock(), block[player_m].getY() + 1)) {
             isSettable = true;
+        }
 
         if (!isSettable) {
             int[][] boxTmp = box.getBoxClone();
             GameBox.setBlock(boxTmp, block[player_m].getBlock(), block[player_m].getX(), block[player_m].getY() + 1);
 
-            if (isCollision(boxTmp))
+            if (isCollision(boxTmp)) {
                 isSettable = true;
+            }
         }
 
         return isSettable;
@@ -278,8 +288,9 @@ public class LogicController implements ControlInterface {
     private boolean isPathImpact(int x_m, int player_m) {
         boolean isPathImpact = false;
 
-        if (isOutLeftRight(block[player_m].getBlock(), x_m))
+        if (isOutLeftRight(block[player_m].getBlock(), x_m)) {
             isPathImpact = true;
+        }
 
         if (!isPathImpact) {
             int playerCheck = Math.abs(player_m - 1);
@@ -289,8 +300,9 @@ public class LogicController implements ControlInterface {
                 GameBox.setBlock(boxTmp, block[player_m].getBlock(), x_m, 0);
                 GameBox.setBlock(boxTmp, block[playerCheck].getBlock(), block[playerCheck].getX(), block[playerCheck].getY());
 
-                if (isCollision(boxTmp))
+                if (isCollision(boxTmp)) {
                     isPathImpact = true;
+                }
             }
         }
 
@@ -336,12 +348,14 @@ public class LogicController implements ControlInterface {
         if (y_m > GameBox._boxRow - Block._blockRow) {
             y_m = GameBox._boxRow - y_m;
 
-            for (int row = Block._blockRow - 1; row >= y_m; --row)
-                for (int col = 0; col < Block._blockCol; ++col)
+            for (int row = Block._blockRow - 1; row >= y_m; --row) {
+                for (int col = 0; col < Block._blockCol; ++col) {
                     if (0 != block_m[row][col]) {
                         isOutBottom = true;
                         break;
                     }
+                }
+            }
         }
 
         return isOutBottom;
@@ -351,10 +365,13 @@ public class LogicController implements ControlInterface {
     private boolean isCollision(int[][] box_m) {
         boolean isCollision = false;
 
-        for (int row = 0; row < GameBox._boxRow; ++row)
-            for (int col = 0; col < GameBox._boxCol; ++col)
-                if (box_m[row][col] > 1)
+        for (int row = 0; row < GameBox._boxRow; ++row) {
+            for (int col = 0; col < GameBox._boxCol; ++col) {
+                if (box_m[row][col] > 1) {
                     isCollision = true;
+                }
+            }
+        }
 
         return isCollision;
     }
@@ -363,9 +380,9 @@ public class LogicController implements ControlInterface {
     private int randomX(int player_m) {
         int x;
 
-        do
-            x = ((int)(Math.random() * (GameBox._boxCol)));
-        while (isPathImpact(x, player_m));
+        do {
+            x = ((int) (Math.random() * (GameBox._boxCol)));
+        } while (isPathImpact(x, player_m));
 
         return x;
     }
@@ -405,7 +422,6 @@ public class LogicController implements ControlInterface {
                         }
                     }
                 }   //
-
 
                 if (!isOver) {
                     // 方块下落
@@ -496,8 +512,9 @@ class GameBox {
     int[][] getBoxClone() {
         int[][] boxTmp = new int[_boxRow][_boxCol];
 
-        for (int row = 0; row < _boxRow; ++row)
+        for (int row = 0; row < _boxRow; ++row) {
             System.arraycopy(box[row], 0, boxTmp[row], 0, _boxCol);
+        }
 
         return boxTmp;
     }
@@ -509,10 +526,13 @@ class GameBox {
 
     // 静态方法，放置方块，实现不同参数的方块放置
     static void setBlock(int[][] box_m, int[][] block_m, int x_m, int y_m) {
-        for (int row = 0; row < Block._blockRow; ++row)
-            for (int col = 0; col < Block._blockCol; ++col)
-                if (1 == block_m[row][col])
+        for (int row = 0; row < Block._blockRow; ++row) {
+            for (int col = 0; col < Block._blockCol; ++col) {
+                if (1 == block_m[row][col]) {
                     box_m[y_m + row][x_m + col] += 1;
+                }
+            }
+        }
     }
 
     // 消除盒子中满足条件的方块，获取一次消除的行数
@@ -598,8 +618,9 @@ class Block {
     int[][] getBlockClone() {
         int[][] blockTmp = new int[_blockRow][_blockCol];
 
-        for (int row = 0; row < _blockRow; ++row)
+        for (int row = 0; row < _blockRow; ++row) {
             System.arraycopy(block[0][row], 0, blockTmp[row], 0, _blockCol);
+        }
 
         return blockTmp;
     }
@@ -768,8 +789,14 @@ class ScoreCounter {
     void count(int line_m) {
         line += line_m;
         score += 5 * (line_m * line_m + line_m);   // 分数计算公式：5 * (n * n + n)
-        if (level < 10) level += line_m;
-        if (level > 10) level = 10;
+
+        if (level < 10) {
+            level += line_m;
+        }
+        else if (level > 10) {
+            level = 10;
+        }
+
         step = 1100 - level * 100;
     }
 }

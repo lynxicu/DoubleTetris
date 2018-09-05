@@ -168,7 +168,7 @@ class Renderer extends Canvas {
                 else
                     cancel();
             }
-        }, 0, 300);   //
+        }, 0, 300);   // 使用 Timer 定时器完成定时交替绘制实现闪烁效果
     }
 
     // 游戏开始时清空画布，重绘 Canvas 边框
@@ -183,10 +183,13 @@ class Renderer extends Canvas {
         gc.setStroke(color_m);
         gc.setLineWidth(_blockBorder);
 
-        for (int row = Block._blockRow; row < GameBox._boxRow; ++row)
-            for (int col = 0; col < GameBox._boxCol; ++col)
-                if (1 == box_m[row][col])
+        for (int row = Block._blockRow; row < GameBox._boxRow; ++row) {
+            for (int col = 0; col < GameBox._boxCol; ++col) {
+                if (1 == box_m[row][col]) {
                     gc.strokeRoundRect(_boxX + 2 * _border + col * (2 * _border + _blockWidth + _blockBorder) + _blockBorder, _boxY + 2 * _border + (row - Block._blockRow) * (2 * _border + _blockHeight + _blockBorder) + _blockBorder, _blockWidth, _blockHeight, _arcSize, _arcSize);
+                }
+            }
+        }
     }
 
     // Box（盒子）边框绘制
@@ -201,10 +204,13 @@ class Renderer extends Canvas {
         gc.setStroke(color_m);
         gc.setLineWidth(_blockBorder);
 
-        for (int row = 0; row < Block._blockRow; ++row)
-            for (int col = 0; col < Block._blockCol; ++col)
-                if (1 == block_m[row][col] && row + y_m >= Block._blockRow)
+        for (int row = 0; row < Block._blockRow; ++row) {
+            for (int col = 0; col < Block._blockCol; ++col) {
+                if (1 == block_m[row][col] && row + y_m >= Block._blockRow) {
                     gc.strokeRoundRect(_boxX + 2 * _border + (col + x_m) * (2 * _border + _blockWidth + _blockBorder) + _blockBorder, _boxY + 2 * _border + (row + y_m - Block._blockRow) * (2 * _border + _blockHeight + _blockBorder) + _blockBorder, _blockWidth, _blockHeight, _arcSize, _arcSize);
+                }
+            }
+        }
     }
 
     // 方块预览界面绘制

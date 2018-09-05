@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 public class KeyResponder implements EventHandler<KeyEvent> {
     private GameController gc;
 
+    // 初始化，引用 GameController 对象 gc
     KeyResponder(GameController gc_m){
         gc = gc_m;
     }

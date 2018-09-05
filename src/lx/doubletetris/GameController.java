@@ -14,7 +14,7 @@ class GameController implements ControlInterface {
     // 声明 LogicController 逻辑控制器对象 lc
     private LogicController lc;   //
 
-    // 初始化，引用绘制器 re
+    // 初始化，引用 Renderer 对象 re
     GameController(Renderer re_m){
         re = re_m;
     }
@@ -107,38 +107,44 @@ class GameController implements ControlInterface {
 
     @Override
     public void blockRotate(int player_m) {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             lc.blockRotate(player_m);
+        }
     }
 
     @Override
     public void blockMoveLeft(int player_m) {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             lc.blockMoveLeft(player_m);
+        }
     }
 
     @Override
     public void blockMoveRight(int player_m) {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             lc.blockMoveRight(player_m);
+        }
     }
 
     @Override
     public void blockMoveDown(int player_m) {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             lc.blockMoveDown(player_m);
+        }
     }
 
     @Override
     public void blockQuickMoveDown(int player_m) {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             lc.blockQuickMoveDown(player_m);
+        }
     }
 
     // 弹出帮助信息
     void help() {
-        if (isStart && !isPause)
+        if (isStart && !isPause) {
             pause();
+        }
 
         re.helpInfo();
     }

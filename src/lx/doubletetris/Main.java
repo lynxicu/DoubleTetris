@@ -23,7 +23,7 @@ public class Main extends Application{
      */
 
     public void start(Stage mainStage) {
-        // 创建 Render 绘制器对象 re、GameController 游戏控制器对象 gc、KeyResponder 键盘相响应器对象 kr
+        // 创建 Renderer 绘制器对象 re、GameController 游戏控制器对象 gc、KeyResponder 键盘相响应器对象 kr
         Renderer re = new Renderer();
         GameController gc = new GameController(re);
         KeyResponder kr = new KeyResponder(gc);   //
