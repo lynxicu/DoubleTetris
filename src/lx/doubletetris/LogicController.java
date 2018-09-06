@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 // 逻辑控制器类
 // 实现 ControllerInterface 接口
 // 储存基本游戏信息，完成游戏各项操作
-public class LogicController implements ControlInterface {
+class LogicController implements ControlInterface {
     private GameBox box;
     private Block[] block;
     private ScoreCounter sc;
@@ -24,8 +24,8 @@ public class LogicController implements ControlInterface {
         block = new Block[2];
         block[0] = new Block(0);
         block[1] = new Block(1);
-        block[0].setBlockXY(1, 0);
-        block[1].setBlockXY(6, 0);
+        block[0].setBlockXY(randomX(0), 0);
+        block[1].setBlockXY(randomX(1), 0);
         sc = new ScoreCounter();
         step = sc.getStep();
         t = new Timer();
@@ -94,7 +94,9 @@ public class LogicController implements ControlInterface {
 
     @Override
     public void blockQuickMoveDown(int player_m) {
-        for (int i = 0; i < GameBox._boxRow; ++i) {
+        int j = GameBox._boxRow - block[player_m].getY();
+
+        for (int i = 0; i < j; ++i) {
             blockMoveDown(player_m);
         }
     }

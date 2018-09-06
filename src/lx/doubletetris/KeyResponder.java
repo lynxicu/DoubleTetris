@@ -6,7 +6,7 @@ import javafx.scene.input.KeyEvent;
 // 键盘响应器类
 // 继承 javafx.event.EventHandler 类
 // 响应对应按键，实现游戏控制
-public class KeyResponder implements EventHandler<KeyEvent> {
+class KeyResponder implements EventHandler<KeyEvent> {
     private GameController gc;
 
     // 初始化，引用 GameController 对象 gc
@@ -47,6 +47,7 @@ public class KeyResponder implements EventHandler<KeyEvent> {
                 break;
             case SHIFT:
                 gc.blockQuickMoveDown(0);
+                break;
             case UP:
                 gc.blockRotate(1);
                 break;
