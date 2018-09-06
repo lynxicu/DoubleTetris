@@ -1,6 +1,8 @@
-
-
 ## Changelogs
+
+* #### alpha 6 commit
+
+    * ###### 小修小补
 
 * #### alpha 5 commit -> alpha 5 release
 
