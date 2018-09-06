@@ -3,12 +3,12 @@ package lx.doubletetris;
 import javafx.scene.paint.Color;
 
 // 方块集合类
-// 储存方块形状与颜色信息
+// 储存方块形状集合与颜色信息集合
 class BlockSet {
     final static int _blockAmount = 28;
     final static int _blockColorAmount[] = {7, 7};
 
-    // 方块集合形状信息
+    // 方块形状信息集合
     private int block[][][] = {
         /*
          * I 型方块
@@ -180,7 +180,7 @@ class BlockSet {
         }
     };
 
-    // 方块集合颜色信息
+    // 方块颜色信息集合
     private Color blockColor[][] = {
         {
             Color.RED,

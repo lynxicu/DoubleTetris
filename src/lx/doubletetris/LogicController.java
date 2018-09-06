@@ -492,7 +492,7 @@ class LogicController implements ControlInterface {
     }
 }
 
-// 盒子类
+// 游戏盒子类
 // 储存游戏盒子中的方块信息
 class GameBox {
     final static int _boxRow = 20 + Block._blockRow;
